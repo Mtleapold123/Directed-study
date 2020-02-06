@@ -1,8 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import java.awt.*;
-import java.awt.event.PaintEvent;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class mainSystem extends JFrame {
