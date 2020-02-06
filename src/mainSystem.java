@@ -77,7 +77,7 @@ public class mainSystem extends JFrame {
                 End.win();
             }
         });
-        /*
+
         Thread tableUpdater = new Thread(() -> {
             while (true) {
                 if (Stats.getKarma != Stats.karma) {
@@ -101,30 +101,8 @@ public class mainSystem extends JFrame {
                 }
             }
         });
-        */
-        //tableUpdater.wait();
-        runSections.start();
 
-        while (true) {
-            if (Stats.getKarma != Stats.karma) {
-                Stats.getKarma = Stats.karma;
-                table();
-            } else if (Stats.getSPC != Stats.SPC){
-                Stats.getSPC = Stats.SPC;
-                table();
-            } else if (Stats.getOPC != Stats.OPC){
-                Stats.getOPC = Stats.OPC;
-                table();
-            } else if (Stats.getWisdom != Stats.wisdom){
-                Stats.getWisdom = Stats.wisdom;
-                table();
-            } else if (Stats.getBillsProposed != Stats.billsProposed){
-                Stats.getBillsProposed = Stats.billsProposed;
-                table();
-            } else if (Stats.getBillsPassed != Stats.billsPassed){
-                Stats.getBillsPassed = Stats.billsPassed;
-                table();
-            }
-        }
+        tableUpdater.start();
+        runSections.start();
     }
 }
