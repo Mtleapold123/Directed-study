@@ -586,7 +586,7 @@ public class Section1 {
             } else {
                 System.out.println(speaker + "\n see you soon.");
                 peopleMet += 1;
-                mainSystem.addToContacts(speaker);
+                mainSystem.addToContacts("Speaker Of The House");
                 mainSystem.Stats.SPC += 10;
                 mainSystem.Stats.wisdom += 10;
             }

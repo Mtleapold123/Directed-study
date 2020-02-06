@@ -20,6 +20,7 @@ public class mainSystem extends JFrame {
         public static int getBillsProposed = 0;
         public static int billsPassed = 0;
         public static int getBillsPassed = 0;
+        public static long cash = 174000;
         public static String party;
         public static String currentBill;
     }
@@ -44,6 +45,14 @@ public class mainSystem extends JFrame {
         Stats.contacts.add(name);
     }
 
+    public static void removeFromContacts(String name){
+        if (Stats.contacts.contains(name)) {
+            Stats.contacts.remove(name);
+            Stats.n -= 1;
+        }
+
+    }
+
     public static void table() {
         if (Stats.a != 0){
             f.dispose();
@@ -62,6 +71,11 @@ public class mainSystem extends JFrame {
                 }
                 try {
                     Section1.section1();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    Section2.section2();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
