@@ -8,18 +8,18 @@ public class mainSystem extends JFrame {
         public static int x = 1;
         public static int n = 0;
         public static ArrayList<String> contacts = new ArrayList<>(n);
-        public static int karma = 0;
-        public static int getKarma = 0;
-        public static int SPC = 0;
-        public static int getSPC = 0;
-        public static int OPC = 0;
-        public static int getOPC = 0;
-        public static int wisdom = 0;
-        public static int getWisdom = 0;
-        public static int billsProposed = 0;
-        public static int getBillsProposed = 0;
-        public static int billsPassed = 0;
-        public static int getBillsPassed = 0;
+        public static volatile int karma = 0;
+        public static volatile int getKarma = 0;
+        public static volatile int SPC = 0;
+        public static volatile int getSPC = 0;
+        public static volatile int OPC = 0;
+        public static volatile int getOPC = 0;
+        public static volatile int wisdom = 0;
+        public static volatile int getWisdom = 0;
+        public static volatile int billsProposed = 0;
+        public static volatile int getBillsProposed = 0;
+        public static volatile int billsPassed = 0;
+        public static volatile int getBillsPassed = 0;
         public static long cash = 174000;
         public static String party;
         public static String currentBill;
@@ -60,6 +60,7 @@ public class mainSystem extends JFrame {
         Stats.a += 1;
         SwingUtilities.invokeLater(mainSystem::new);
     }
+
 
     public static void main(String[] args) throws InterruptedException {
         Thread runSections = new Thread(() -> {
@@ -111,7 +112,6 @@ public class mainSystem extends JFrame {
                 }
             }
         });
-
         tableUpdater.start();
         runSections.start();
     }
