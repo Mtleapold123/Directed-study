@@ -1,10 +1,10 @@
 import javax.swing.*;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class mainSystem extends JFrame {
 
     public static class Stats {
-        public static int a = 0;
         public static int x = 1;
         public static int n = 0;
         public static ArrayList<String> contacts = new ArrayList<>(n);
@@ -23,6 +23,7 @@ public class mainSystem extends JFrame {
         public static long cash = 174000;
         public static String party;
         public static String currentBill;
+        public static String committee;
     }
 
     public static JFrame f;
@@ -54,10 +55,6 @@ public class mainSystem extends JFrame {
     }
 
     public static void table() {
-        if (Stats.a != 0){
-            f.dispose();
-        }
-        Stats.a += 1;
         SwingUtilities.invokeLater(mainSystem::new);
     }
 
@@ -80,6 +77,30 @@ public class mainSystem extends JFrame {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                try {
+                    Section3.section3();
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                if (Stats.committee == "Ethics"){
+                    try{
+                        Ethics.ethics();
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                } else if (Stats.committee == "Judiciary"){
+                    try{
+                        Judiciary.judiciary();
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                } else {
+                    try{
+                        Budget.budget();
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
                 break;
             }
             if (Stats.x != 1){
@@ -91,27 +112,48 @@ public class mainSystem extends JFrame {
 
         Thread tableUpdater = new Thread(() -> {
             while (true) {
-                if (Stats.getKarma != Stats.karma) {
-                    Stats.getKarma = Stats.karma;
-                    table();
-                } else if (Stats.getSPC != Stats.SPC){
-                    Stats.getSPC = Stats.SPC;
-                    table();
-                } else if (Stats.getOPC != Stats.OPC){
-                    Stats.getOPC = Stats.OPC;
-                    table();
-                } else if (Stats.getWisdom != Stats.wisdom){
-                    Stats.getWisdom = Stats.wisdom;
-                    table();
-                } else if (Stats.getBillsProposed != Stats.billsProposed){
-                    Stats.getBillsProposed = Stats.billsProposed;
-                    table();
-                } else if (Stats.getBillsPassed != Stats.billsPassed){
-                    Stats.getBillsPassed = Stats.billsPassed;
-                    table();
+                synchronized (runSections) {
+                    if (Stats.getKarma != Stats.karma) {
+                        Stats.getKarma = Stats.karma;
+                        if (f != null) {
+                            f.dispose();
+                        }
+                        table();
+                    } else if (Stats.getSPC != Stats.SPC){
+                        if (f != null){
+                            f.dispose();
+                        }
+                        Stats.getSPC = Stats.SPC;
+                        table();
+                    } else if (Stats.getOPC != Stats.OPC){
+                        if (f != null){
+                            f.dispose();
+                        }
+                        Stats.getOPC = Stats.OPC;
+                        table();
+                    } else if (Stats.getWisdom != Stats.wisdom){
+                        if (f != null){
+                            f.dispose();
+                        }
+                        Stats.getWisdom = Stats.wisdom;
+                        table();
+                    } else if (Stats.getBillsProposed != Stats.billsProposed){
+                        if (f != null){
+                            f.dispose();
+                        }
+                        Stats.getBillsProposed = Stats.billsProposed;
+                        table();
+                    } else if (Stats.getBillsPassed != Stats.billsPassed){
+                        if (f != null){
+                            f.dispose();
+                        }
+                        Stats.getBillsPassed = Stats.billsPassed;
+                        table();
+                    }
                 }
             }
         });
+
         tableUpdater.start();
         runSections.start();
     }
