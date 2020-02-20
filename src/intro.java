@@ -41,9 +41,8 @@ public class intro extends JFrame {
             System.out.println("I see. In reality I am the Smartest Political Scientist you could of gotten. Bad move Mr. " + callFromIntro.lastName);
             mainSystem.Stats.karma = mainSystem.Stats.karma - 5;
         }
-        System.out.println("Kieren\nSo first things first, the most important thing to know is your stats.");
-        mainSystem.table();
-        TimeUnit.SECONDS.sleep(2);
+        System.out.println("Kieren\nSo first things first, the most important thing to know is your stats. as seen if you alt tab right now.");
+        TimeUnit.SECONDS.sleep(4);
         System.out.println("Those will affect how others react to you. keep track of them so you know what you need to \nimprove on.");
         if (A == 2) {
             System.out.print("As you can see, you're already behind Mr. " + callFromIntro.lastName);

@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class mainSystem extends JFrame {
@@ -101,12 +100,30 @@ public class mainSystem extends JFrame {
                         e.printStackTrace();
                     }
                 }
+                try {
+                    Section4.section4();
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                try {
+                    Section5.section5();
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
                 break;
             }
             if (Stats.x != 1){
-                End.loose();
+                try {
+                    End.loose();
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
             } else{
-                End.win();
+                try {
+                    End.win();
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
             }
         });
 
